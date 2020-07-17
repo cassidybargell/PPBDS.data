@@ -18,6 +18,9 @@ library(shiny)
 options(tutorial.storage="client") 
 ```
 
+```{r echo=FALSE}
+knitr::include_graphics("images/don_rubin.jpg", dpi = 100)
+```
 <!-- Copied set up from Jessica -->
 <!-- Ch. 3 tutorial questions written by Cassidy Bargell  -->
 <!-- Also taken from rstudio/learnr and rstudio-education/primers GitHub repos -->
