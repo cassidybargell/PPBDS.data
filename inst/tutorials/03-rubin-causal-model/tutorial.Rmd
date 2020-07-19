@@ -5,7 +5,7 @@ output:
       progressive: true
       allow_skip: true
 runtime: shiny_prerendered
----
+description: "Chapter 3 tutorial"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
@@ -14,12 +14,12 @@ library(PPBDS.data)
 library(learnr)
 library(learnrhash)
 library(shiny)
-options(tutorial.storage="client") 
 ```
 
 ```{r echo=FALSE}
 knitr::include_graphics("images/don_rubin.jpg", dpi = 100)
 ```
+
 <!-- Copied set up from Jessica -->
 <!-- Ch. 3 tutorial questions written by Cassidy Bargell  -->
 <!-- Also taken from rstudio/learnr and rstudio-education/primers GitHub repos -->
