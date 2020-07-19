@@ -5,6 +5,7 @@ output:
       progressive: true
       allow_skip: true
 runtime: shiny_prerendered
+description: "Chapter 1 tutorial"
 ---
 
 <!-- Ch. 1 tutorial questions written by Jessica Edwards  -->
@@ -13,82 +14,30 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(nycflights13)
+library(PPBDS.data)
 library(learnr)
-library(gradethis)
 library(learnrhash)
 library(shiny)
 knitr::opts_chunk$set(echo = FALSE, message = FALSE)
-options(tutorial.storage="client") 
 ```
 
 ## What are R and RStudio?
 
-### How to install R
-
-![](https://vimeo.com/203516510)
-
-### Test your knowledge
-
-```{r quiz2, echo=FALSE}
-quiz(caption = "Quiz - Install R",
-  question("Is R free to download and use?",
-    answer("Yes!", correct = TRUE, message = "R is free _and_ open source, which means that anyone can read, use, and copy the source code of the R language."),
-    answer("No.")
-  ),
-  question("Where do you download R?",
-    answer("www.rstudio.com/download"),
-    answer("[cloud.r-project.org](http://cloud.r-project.org)", correct = TRUE, message = "You can also download R from [cran.r-project.org](http://cran.r-project.org)"),
-    answer("www.r-project.org", message = "Good try, but not exactly. www.r-project.org doesn't provide a download link, but it does provide a link to one the websites above."),
-    answer("www.r.com"),
-    allow_retry = TRUE
-  ),
-  question("How often should you update R?",
-    answer("Everytime you use it", message = "This will be too often unless you use R very rarely!"),
-    answer("About once a year", correct = TRUE, "A new version of R is released about once a year. Update sooner if you encounter a bug that you cannot explain."),
-    answer("Never", message = "A new version of R is released about once a year. I'll assume that you are using the newest version of R, which will be the fastest version with the fewest unexpected behaviors." ),
-    allow_retry = TRUE
-  )
+```{r name, echo=FALSE}
+question_text(
+  "Student Name:",
+  answer(NULL, correct = TRUE),
+  incorrect = "Ok",
+  try_again_button = "Modify your answer",
+  allow_retry = TRUE
 )
 ```
 
-### How to install RStudio
-
-RStudio is an Integrated Development Environment for R. What does that mean? Well, if you think of R as a language, which it is, you can think of RStudio as a program that helps you write and work in the language. RStudio makes programming in R much easier and I suggest that you use it!
-
-![](https://vimeo.com/203516968)
+RStudio is an Integrated Development Environment for R. What does that mean? Well, if you think of R as a language, which it is, you can think of RStudio as a program that helps you write and work in the language. RStudio makes programming in R much easier and we suggest that you use it!
 
 ### Test your knowledge
 
 ```{r quiz3, echo=FALSE}
-quiz(caption = "Quiz - Install RStudio",
-  question("What is the RStudio IDE?",
-    answer("An application that makes it easier to use R.", correct = TRUE, message = "RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and will rely on the RStudio IDE in several tutorials."),
-    answer("An application that let's you use R without writing any code", message = "And thank goodness! Code provides a reproducible record of your work, which is essential for data science."),
-    answer("A spreadsheet program like Microsoft Excel."),
-    answer("Another name for R", message = "R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English."),
-    allow_retry = TRUE
-  ),
-  question("Is the RStudio IDE free to download and use?",
-    answer("Yes!", correct = TRUE, message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials."),
-    answer("No.", message = "Like R, RStudio is free and open-source. There do exist professional versions of RStudio with enhanced features, but we will not rely on those features in these tutorials.")
-  ),
-  question("Where do you download RStudio?",
-    answer("www.rstudio.com/download", correct = TRUE, message = "For these tutorials, download and install the RStudio Desktop Open Source License."),
-    answer("[cloud.r-project.org](http://cloud.r-project.org)", message = "This is where you download R, not RStudio."),
-    answer("www.r-project.org"),
-    answer("[cran.rstudio.org](http://cran.rstudio.org)"),
-    allow_retry = TRUE
-  ),
-  question("Do you need to install R if you already have RStudio?",
-    answer("Yes.", correct = TRUE),
-    answer("No.", message = "R does not come with RStudio; you need to install R separately.")
-  )
-)
-```
-
-### Summary
-
-```{r quiz-1, echo = FALSE}
 quiz(
   question("What are R and RStudio?",
              answer("R is a programming language and RStudio is an integrated development environment (IDE)", 
@@ -98,6 +47,17 @@ quiz(
              answer("R and RStudio are both IDEs"),
              allow_retry = TRUE
     ),
+  question("What is the RStudio IDE?",
+    answer("An application that makes it easier to use R.", correct = TRUE, message = "RStudio organizes your workspace and makes it easier to write, use, debug, and save R code. I highly recommend it and will rely on the RStudio IDE in several tutorials."),
+    answer("An application that let's you use R without writing any code", message = "And thank goodness! Code provides a reproducible record of your work, which is essential for data science."),
+    answer("A spreadsheet program like Microsoft Excel."),
+    answer("Another name for R", message = "R and RStudio are two separate things. R is a language, like English. Think of RStudio as a program that helps you use the language, kind of like how a word processing program helps you write in English."),
+    allow_retry = TRUE
+  ),
+  question("Do you need to install R if you already have RStudio?",
+    answer("Yes.", correct = TRUE),
+    answer("No.", message = "R does not come with RStudio; you need to install R separately.")
+  ),
   question("In what order do you install R and RStudio?",
              answer("First R then RStudio", correct = TRUE),
              answer("First RStudio then R"),
@@ -127,21 +87,12 @@ mpg <- as.data.frame(mpg)
 ```
 
 ```{r mpg, exercise = TRUE}
-...
+
 ```
 
 <div id="mpg-hint">
 **Hint:** Type `mpg` and then click the Run Code button.
 </div>
-
-### A note about mpg
-
-The code above worked because I've already loaded the ggplot2 package for you in this tutorial: `mpg` comes in the ggplot2 package. If you would like to look at `mpg` on your own computer, you will need to first load `ggplot2`. You can do that in two steps:
-
-1. Run `install.packages('ggplot2')` to install ggplot2 if you do not yet have it.
-2. Load ggplot2 with the `library(ggplot2)` command
-
-After that, you will be able to access any object in ggplot2—including `mpg`—until you close R. 
 
 ###  
 
@@ -164,42 +115,6 @@ You can learn more about `mpg` by opening its help page. The help page will expl
 You can open a help page for any object that comes with R or with an R package. To open the help page, type a `?` before the object's name and then run the command, as you did with `?mpg`. This technique works for functions, packages, and more. 
 
 Notice that objects created by you or your colleagues will not have a help page (unless you make one).
-
-### Exercises
-
-Use the code chunk below to answer the following questions.
-
-```{r exercises1, exercise = TRUE}
-
-```
-
-```{r quiz1, echo = FALSE}
-quiz(caption = "Quiz",
-  question("What does the `drv` variable of `mpg` describe?  Read the help for `?mpg` to find out.",
-           answer("Whether or not the vehicle has driver side airbags"), 
-           answer("Whether a car is automatic or manual transmission"),
-           answer("The number of cylinders in the car's engine"),
-           answer("Something else", correct = TRUE, message = "`drv` describes the type of drivetrain in a car: front wheel drive, rear wheel drive, or four wheel drive."), 
-           allow_retry = TRUE
-  ),
-  question("How many rows are in the data frame named `cars`?",
-           answer("2"), 
-           answer("25"),
-           answer("50", correct = TRUE),
-           answer("100"),
-           incorrect = "Incorrect.\nHint: R numbers the rows of a data frame when it displays the contents of a data frame. As a result, you can spot the number of rows in `cars` by examining `cars` in the code block above.", 
-           allow_retry = TRUE
-  ),
-  question("How many columns are in the data frame named `cars`?",
-           answer("1"), 
-           answer("2", correct = TRUE),
-           answer("4"),
-           answer("more than four"),
-           incorrect = "Incorrect.\nHint: If you inspect the contents of `cars` in the code block above, it should be pretty easy to count the number of columns.", 
-           allow_retry = TRUE
-  )
-)
-```
 
 ### What is a tibble?
 
@@ -300,10 +215,6 @@ quiz(
 
 ## What are R packages?
 
-### How to install R packages
-
-![](https://vimeo.com/203516241)
-
 ### Test your knowledge
 
 ```{r names, echo = FALSE}
@@ -320,13 +231,6 @@ quiz(caption = "Quiz - Working with Packages",
     answer("Every time you restart your computer"),
     answer("Only once. Afterwards, R can find it on your hard drive as needed.", correct = TRUE),
     answer("Never, as long as you are connected to the internet.", message = "This could be true if you are using R over a cloud service. However, if you are using R locally on your own computer, you will need to install each package that you use on your computer."),
-    allow_retry = TRUE
-  ),
-  question("What is the tidyverse?",
-    answer("A collection of packages that work well together and provide tools for common data science tasks.", correct = TRUE, message = 'You can install all of the tidyverse packages at once with `install.packages("tidyverse")`.'),
-    answer("A word processing program for R"),
-    answer("A code style that reads like poetry"),
-    answer("An alternate universe where everyone is an R programmer."),
     allow_retry = TRUE
   ),
   question("Which of the following is NOT true about R packages?",
@@ -351,7 +255,7 @@ quiz(caption = "Quiz - Working with Packages",
 
 *Load the `PPBDS.data` package to look at the `trains` dataset.*
 ```{r exercise-2, exercise = TRUE, exercise.lines = 5}
-...
+
   
 trains
 ```
@@ -361,7 +265,7 @@ trains
 library(dplyr)
 library(PPBDS.data)
 
-...
+
 ```
 
 ```{r quiz-4, echo = FALSE}
@@ -383,19 +287,13 @@ quiz(caption = "Quiz - `trains` dataset",
 ```
 
 *Extract the `income` variable in the `trains` dataset using the `$` operator.*
-```{r exercise-5, exercise = TRUE, exercise.lines = 5}
-library(PPBDS.data)
+```{r exercise-5, exercise = TRUE}
 
-...
 ```
 
 ### `qscores` dataset
 
 *Look at the `qscores` dataset using `glimpse()`. We have loaded the `PPBDS.data` and the `dplyr` packages.*
-```{r qscores-setup, include = FALSE}
-library(PPBDS.data)
-library(dplyr)
-```
 
 ```{r qscores, exercise = TRUE, exercise.lines = 5}
 
@@ -413,9 +311,9 @@ quiz(
 )
 ```
 
-## Components of a graphic
+## Data Visualization using the ggplot2 package
 
-### Test your knowledge
+### Components of a graphic
 
 ```{r quiz-6, echo = FALSE}
 quiz(
@@ -437,14 +335,9 @@ quiz(
 
 ### Components of a scatterplot
 
-*Look at this scatterplot made using the `trains` dataset. We have loaded the `PPBDS.data` and the `ggplot2` packages.*
-
-*Higher numbers mean more conservative attitudes toward immigration-related policies on a 3 to 15 scale. Individuals with a treatment value of "Treated" were exposed to two Spanish-speakers on their regular commute. "Control" individuals were not.*
+*Look at this scatterplot made using the `trains` dataset. Higher numbers mean more conservative attitudes toward immigration-related policies on a 3 to 15 scale. Individuals with a treatment value of "Treated" were exposed to two Spanish-speakers on their regular commute. "Control" individuals were not.*
 
 ```{r trains}
-library(PPBDS.data)
-library(ggplot2)
-
 ggplot(data = trains, mapping = aes(x = att_start, y = att_end, color = treatment)) +
   geom_point() + facet_wrap(~party)
 ```
@@ -472,78 +365,150 @@ quiz(
 )
 ```
 
+## Summary of Geoms
+
+### Test Your Knowledge
+
+```{r geoms, echo = FALSE}
+quiz(
+  question("Which plot(s) show the relationship between 2 numerical variables?",
+           answer("scatterplot", correct = TRUE),
+           answer("lineplot", correct = TRUE),
+           answer("histogram"),
+           answer("boxplot"),
+           answer("barplot"),
+           allow_retry = TRUE
+  ),
+  question("Which plot(s) show the distribution of 1 numerical variable?",
+           answer("scatterplot"),
+           answer("lineplot"),
+           answer("histogram", correct = TRUE),
+           answer("boxplot", correct = TRUE),
+           answer("barplot"),
+           allow_retry = TRUE
+  ),
+  question("Which plot(s) show the distribution of 1 categorical variable?",
+           answer("scatterplot"),
+           answer("lineplot"),
+           answer("histogram"),
+           answer("boxplot"),
+           answer("barplot", correct = TRUE),
+           allow_retry = TRUE
+  ),
+  question("Which of the following is NOT a geometric object?",
+           answer("`geom_scatter()`", correct = TRUE),
+           answer("`geom_line()`"),
+           answer("`geom_histogram()`"),
+           answer("`geom_boxplot()`"),
+           answer("`geom_bar()`"),
+           allow_retry = TRUE
+  )
+)
+```
+
 ## Scatterplots
+
+### Scatterplot with the `qscores` dataset
 
 *Let's make a scatterplot using the `qscores` dataset. Load the `PPBDS.data` package and look at the `qscores` dataset by simply typing the name of the dataset.*
 
 ```{r exercise-6, exercise = TRUE, exercise.lines = 5}
-# ---------
 
-# ---------
 ```
 
-```{r exercise-6-solution}
-library(PPBDS.data)
+```{r exercise-6-hint}
+library(...)
 
-qscores
+...
 ```
 
-*Fill in the `ggplot()` function to create a scatterplot with `overall` on the x-axis and `workload` on the y-axis. Is there a relationship between the overall rating of a Harvard course versus the average hours per week of workload?*
+###
+
+*Load the `ggplot2` package. Use the `ggplot()` function to create a scatterplot using the `qscores` dataset, `rating` on the x-axis and `hours` on the y-axis. Is there a relationship between the rating of a Harvard course versus the average hours per week of workload?*
 
 ```{r exercise-7, exercise = TRUE, exercise.lines = 5}
-library(ggplot2)
 
-# ggplot(data = qscores, mapping = aes(x = ---------, y = ---------)) +
-  # geom_point()
 ```
 
-```{r exercise-7-solution}
-ggplot(data = qscores, mapping = aes(x = overall, y = workload)) + 
-  geom_point()
+```{r exercise-7-hint}
+library(...)
+
+ggplot(data = qscores, mapping = aes(x = ..., y = ...)) +
+  ...
 ```
+
+###
 
 *Now we want to add a `size` `aes`thetic based on the number of students enrolled in each course. Add `size = enrollment` to the other `aes`thetics of the points. Do larger classes have a higher average overall course rating? What about higher workload?*
 
 ```{r exercise-8, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = qscores, mapping = aes(x = overall, y = workload, ---------)) +
-  # geom_point()
-```
-
-```{r exercise-8-solution}
-ggplot(data = qscores, mapping = aes(x = overall, y = workload, size = enrollment)) +
+ggplot(data = qscores, mapping = aes(x = rating, y = hours)) +
   geom_point()
 ```
+
+```{r exercise-8-hint}
+ggplot(data = qscores, mapping = aes(x = rating, y = hours, size = ...)) +
+  geom_point()
+```
+
+### Overplotting
+
+While this plot created using the `mpg` dataset only displays 126 points, it visualizes a data set that contains 234 points.
+
+```{r echo = FALSE, out.width = "80%"}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+
+The missing points are hidden behind other points, a phenomenon known as _overplotting_. Overplotting is a problem because it provides an incomplete picture of the dataset. You cannot determine where the *mass* of the points fall, which makes it difficult to spot relationships in the data. 
+
+### Causes of overplotting
+
+Overplotting usually occurs for two different reasons:
+
+1. The data points have been rounded to a "grid" of common values, as in the plot above
+2. The dataset is so large that it cannot be plotted without points overlapping each other
+
+How you deal with overplotting will depend on the cause. 
+
+### Changing the transparency
+
+If your overplotting is due to rounding, you can obtain a better picture of the data by making each point semi-transparent. For example you could _set_ the alpha aesthetic of the plot below to a _value_ less than one, which will make the points transparent. 
+
+Try this now. Set the points to an alpha of 0.2, which will make each point 20% opague (i.e. five points staked on top of each other will create a solid black).
 
 *Change the transparency of the points by setting `alpha = 0.2` within `geom_point()`.*
 
 ```{r exercise-9, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = qscores, mapping = aes(x = overall, y = workload, size = enrollment)) +
-  # geom_point(----------)
+ggplot(data = qscores, mapping = aes(x = rating, y = hours, size = enrollment)) +
+  geom_point()
 ```
 
-```{r exercise-9-solution}
-ggplot(data = qscores, mapping = aes(x = overall, y = workload, size = enrollment)) +
-  geom_point(alpha = 0.2)
+```{r exercise-9-hint}
+ggplot(data = qscores, mapping = aes(x = rating, y = hours, size = enrollment)) +
+  geom_point(alpha = ...)
 ```
+
+### Adjusting the position
+
+A second strategy for dealing with overplotting due to rounding is to adjust the position of each point. `geom_jitter()` plots a scatterplot and then adds a small amount of random noise to each point in the plot. It is a shortcut for adding a "jitter" position adjustment to a points plot (i.e, `geom_point(position = "jitter")`). Since the noise is random, it is unlikely that two points rounded to the same location will also be jittered to the same location. The result is a jittered plot that displays more of the data and provides a simple way to inspect patterns that occur in heavily gridded or overlapping data. 
 
 *Replace `geom_point()` with `geom_jitter()` to create a jittered scatterplot.*
 
 ```{r exercise-10, exercise = TRUE, exercise.lines = 5}
-ggplot(data = qscores, mapping = aes(x = overall, y = workload)) +
+ggplot(data = qscores, mapping = aes(x = rating, y = hours)) +
   geom_point()
 ```
 
-```{r exercise-10-solution}
-ggplot(data = qscores, mapping = aes(x = overall, y = workload)) +
-  geom_jitter()
-```
+### Strategies for large data
+
+Alpha and jittering are less useful for large data. Jittering will not separate the points, and a mass of transparent points can still look black.
+
+A better way to deal with overplotting due to large data is to visualize a summary of the data, by using a histogram or a linegraph, for example.
 
 ## Linegraphs
 
 ```{r linegraphs-setup, include = FALSE}
-library(PPBDS.data)
-library(tidyverse)
-
 cces_data <- cces %>%
   filter(approval_ch %in% c("Approve / Somewhat Approve", "Disapprove / Somewhat Disapprove")) %>%
   group_by(year, approval_ch) %>%
@@ -556,19 +521,18 @@ cces_data <- cces %>%
 cces_data
 ```
 
-*Fill in the `ggplot()` function to create a linegraph with `year` on the x-axis, `avg_age` on the y-axis, and `approval_ch` as the color aesthetic.*
+*Use the `ggplot()` function to create a linegraph with the dataset called `cces_data` with `year` on the x-axis, `avg_age` on the y-axis, and `approval_ch` as the color aesthetic.*
 
 ```{r exercise-11, exercise = TRUE, exercise.lines = 5}
-library(ggplot2)
 
-# ggplot(data = cces_data, mapping = aes(x = ---------, y = ---------, color = ----------)) +
-  # geom_line()
 ```
 
-```{r exercise-11-solution}
-ggplot(data = cces_data, mapping = aes(x = year, y = avg_age, color = approval_ch)) + 
+```{r exercise-11-hint}
+ggplot(data = cces_data, mapping = aes(x = ..., y = ..., color = ...)) +
   geom_line()
 ```
+
+### Test your knowledge
 
 ```{r quiz-8, echo = FALSE}
 quiz(
@@ -585,6 +549,8 @@ quiz(
 
 ## Histograms
 
+### Test your knowledge
+
 ```{r quiz-9, echo = FALSE}
 quiz(
   question("A histogram is:",
@@ -595,20 +561,16 @@ quiz(
 )
 ```
 
-*Using the `qscores` dataset and `ggplot()`, make a histogram where `overall` is on the x-axis to see the distribution of Harvard course ratings.*
+###
+
+*Using the `qscores` dataset and `ggplot()`, make a histogram where `rating` is on the x-axis to see the distribution of Harvard course ratings.*
 
 ```{r exercise-12, exercise = TRUE, exercise.lines = 5}
-library(PPBDS.data)
-library(ggplot2)
 
-# ggplot(data = qscores, mapping = aes(x = ---------)) + geom_histogram()
 ```
 
-```{r exercise-12-solution}
-library(PPBDS.data)
-library(ggplot2)
-
-ggplot(data = qscores, mapping = aes(x = overall)) + geom_histogram()
+```{r exercise-12-hint}
+ggplot(data = ..., mapping = aes(x = ...)) + ...
 ```
 
 ```{r quiz-10, echo = FALSE}
@@ -619,35 +581,41 @@ quiz(
 )
 ```
 
+###
+
 *Add white vertical borders demarcating the bins by adding `color = "powderblue"` and `fill = "violet"` arguments to `geom_histogram()`.*
 
 ```{r exercise-13, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = qscores, mapping = aes(x = overall)) +
-  # geom_histogram(color = --------, fill = --------)
+ggplot(data = qscores, mapping = aes(x = overall)) +
+  geom_histogram()
 ```
 
-```{r exercise-13-solution}
+```{r exercise-13-hint}
 ggplot(data = qscores, mapping = aes(x = overall)) + 
-  geom_histogram(color = "powderblue", fill = "violet")
+  geom_histogram(color = ..., fill = ...)
 ```
 
-*Specify the number of bins to be 10 via the `bins` argument in `geom_histogram()`.*
+###
+
+*Specify the number of bins to be 10 via the `bins` argument and the `color` as "white" in `geom_histogram()`.*
 
 ```{r exercise-14, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = qscores, mapping = aes(x = overall)) +
-  # geom_histogram(bins = --------, color = "white")
+ggplot(data = qscores, mapping = aes(x = overall)) +
+  geom_histogram()
 ```
 
 ```{r exercise-14-solution}
 ggplot(data = qscores, mapping = aes(x = overall)) +
-  geom_histogram(bins = 10, color = "white")
+  geom_histogram(bins = ..., color = ...)
 ```
 
-*Specify the width of the bins to be 1 via the `binwidth` argument in `geom_histogram()`.*
+###
+
+*Specify the width of the bins to be 1 via the `binwidth` argument and the `color` as "white" in `geom_histogram()`.*
 
 ```{r exercise-15, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = qscores, mapping = aes(x = overall)) +
-  # geom_histogram(binwidth = ---------, color = "white")
+ggplot(data = qscores, mapping = aes(x = overall)) +
+  geom_histogram()
 ```
 
 ```{r exercise-15-solution}
@@ -673,9 +641,6 @@ quiz(
 *Let's keep playing with the `qscores` dataset in the `PPBDS.data` package. We have filtered the dataset using the `tidyverse` package based on the five departments with the classes with the most enrollment: ECON, COMPSCI, STAT, GOV, and MATH. (You will learn how to do this in the next chapter). The filtered dataset is called `top_five_qscores`.*
 
 ```{r boxplot-setup, include = FALSE}
-library(tidyverse)
-library(PPBDS.data)
-
 top_five_enrolled <- qscores %>% 
   group_by(department) %>%
   summarize(enrollment = sum(enrollment)) %>% 
@@ -692,15 +657,12 @@ top_five_qscores
 *Using the `top_five_qscores` dataset and `ggplot()`, make a boxplot where `department` is on the x-axis and `overall` is on the y-axis.*
 
 ```{r exercise-16, exercise = TRUE, exercise.lines = 5}
-library(ggplot2)
 
-# ggplot(data = top_five_qscores, mapping = aes(x = ---------, y = ---------)) + geom_boxplot()
 ```
 
-```{r exercise-16-solution}
-library(ggplot2)
-
-ggplot(data = top_five_qscores, mapping = aes(x = department, y = overall)) + geom_boxplot()
+```{r exercise-16-hint}
+ggplot(data = ..., mapping = aes(x = ..., y = ...)) +
+  ...
 ```
 
 ```{r quiz-12, echo = FALSE}
@@ -742,12 +704,11 @@ quiz(
 )
 ```
 
+###
+
 *We can now use a barplot to plot how many students are enrolled in classes per department. We will use the `top_five_qscores` dataset again to look at the five largest departments.*
 
 ```{r barplot-setup, include = FALSE}
-library(tidyverse)
-library(PPBDS.data)
-
 top_five_enrolled <- qscores %>% 
   group_by(department) %>%
   summarize(enrollment = sum(enrollment)) %>% 
@@ -761,44 +722,39 @@ top_five_qscores <- qscores %>% filter(department %in% top_five_enrolled[0:5])
 top_five_qscores
 ```
 
-*Use `geom_bar()` to plot `department` on the x-axis to see the number of classes in each department.*
+*Use `ggplot()` and `geom_bar()` to plot `department` on the x-axis to see the number of classes in each department.*
 
 ```{r exercise-17, exercise = TRUE, exercise.lines = 5}
-library(ggplot2)
 
-# ggplot(data = top_five_qscores, mapping = aes(x = ---------)) +
-  ---------
 ```
 
-```{r exercise-17-solution}
-library(ggplot2)
-
-ggplot(data = top_five_qscores, mapping = aes(x = department)) +
-  geom_bar()
+```{r exercise-17-hint}
+ggplot(data = ..., mapping = aes(x = ...)) +
+  ...
 ```
+
+###
 
 *We can then count the number of classes per department in order to use the `geom_col()` layer instead. We do this using the `group_by()` and `count()` functions in the `tidyverse` package, which you will learn how to use in the next chapter. Our new data frame is stored as `top_five_qscores_counted`.*
 
 ```{r classes-counted-setup, include = FALSE}
-library(tidyverse)
-
-top_five_qscores_counted <- top_five_qscores %>% group_by(department) %>% count() %>% rename(count = n)
+top_five_qscores_counted <- top_five_qscores %>% 
+  group_by(department) %>% count() %>% rename(count = n)
 ```
 
 ```{r avg-workload-setup, echo = TRUE}
 top_five_qscores_counted
 ```
 
-*Use `geom_col()` to plot `department` on the x-axis and `count` on the y-axis to see the number of classes in each department.*
+*Use `ggplot()` and `geom_col()` to plot `department` on the x-axis and `count` on the y-axis to see the number of classes in each department.*
 
 ```{r exercise-18, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = top_five_qscores_counted, mapping = aes(x = ---------, y = ---------)) +
-  # ---------
+
 ```
 
-```{r exercise-18-solution}
-ggplot(data = top_five_qscores_counted, mapping = aes(x = department, y = count)) +
-  geom_col()
+```{r exercise-18-hint}
+ggplot(data = top_five_qscores_counted, mapping = aes(x = ..., y = ...)) +
+  ...
 ```
 
 ```{r quiz-14, echo = FALSE}
@@ -812,31 +768,31 @@ quiz(
 )
 ```
 
-*Let's go back to the `trains` dataset in the `PPBDS.data` package. Use `geom_bar()` to plot `treatment` on the x-axis.*
+###
+
+*Let's go back to the `trains` dataset in the `PPBDS.data` package. Use `ggplot()` and `geom_bar()` to plot `treatment` on the x-axis.*
 
 ```{r exercise-19, exercise = TRUE, exercise.lines = 5}
-library(PPBDS.data)
-library(ggplot2)
- 
-# ggplot(data = trains, mapping = aes(x = ---------)) + ---------
+
 ```
 
-```{r exercise-19-solution}
-library(PPBDS.data)
-library(ggplot2)
- 
-ggplot(data = trains, mapping = aes(x = treatment)) + geom_bar()
+```{r exercise-19-hint}
+ggplot(data = ..., mapping = aes(x = ...)) + ...
 ```
+
+###
 
 *We can now map the additional variable `party` by adding a `fill = party` inside the `aes()` aesthetic mapping.*
 
 ```{r exercise-20, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = trains, mapping = aes(x = treatment, fill = --------)) + geom_bar()
+ggplot(data = trains, mapping = aes(x = treatment)) + geom_bar()
 ```
 
-```{r exercise-20-solution}
-ggplot(data = trains, mapping = aes(x = treatment, fill = party)) + geom_bar()
+```{r exercise-20-hint}
+ggplot(data = trains, mapping = aes(x = treatment, fill = ...)) + geom_bar()
 ```
+
+###
 
 *Change `fill = party` to `color = party`. What happens? *
 
@@ -844,36 +800,34 @@ ggplot(data = trains, mapping = aes(x = treatment, fill = party)) + geom_bar()
 ggplot(data = trains, mapping = aes(x = treatment, fill = party)) + geom_bar()
 ```
 
-```{r exercise-21-solution}
-ggplot(data = trains, mapping = aes(x = treatment, color = party)) + geom_bar()
-```
+###
 
 *Create a side-by-side barplot by adding `position = "dodge"` to `geom_bar()`.*
 
 ```{r exercise-22, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = trains, mapping = aes(x = treatment, fill = party)) + geom_bar(---------)
+ggplot(data = trains, mapping = aes(x = treatment, fill = party)) +
+  geom_bar()
 ```
 
 ```{r exercise-22-solution}
-ggplot(data = trains, mapping = aes(x = treatment, fill = party)) + geom_bar(position = "dodge")
+ggplot(data = trains, mapping = aes(x = treatment, fill = party)) +
+  geom_bar(position = ...)
 ```
+
+###
 
 *Instead of mapping `party` to `fill`, we can include it as the variable to create small multiples of the plot across the levels of `party` using `facet_wrap(~ party)`. Add this layer to the provided plot in order to create a faceted barplot.*
 
 ```{r exercise-23, exercise = TRUE, exercise.lines = 5}
-# ggplot(data = trains, mapping = aes(x = treatment)) + geom_bar() + ---------
+ggplot(data = trains, mapping = aes(x = treatment)) + 
+  geom_bar()
 ```
 
-```{r exercise-23-solution}
-ggplot(data = trains, mapping = aes(x = treatment)) + geom_bar() + facet_wrap(~ party)
+```{r exercise-23-hint}
+ggplot(data = trains, mapping = aes(x = treatment)) + geom_bar() + ...
 ```
-
-<!-- ## Adding Layers to a Plot -->
-
-<!-- Need to add: faceting, position, scales, coordinate systems, statistical transformations, adding titles and labels to a graph -->
 
 ## Submit
-Ignore the link below. Copy and paste the hash after clicking "Generate Submission" and upload to Canvas!
 
 ```{r encode, echo=FALSE}
 learnrhash::encoder_ui(
@@ -882,10 +836,9 @@ learnrhash::encoder_ui(
         br(),
     tags$ol(
        tags$li("Click Generate Submission"),
-       tags$li("Type in your name"),
        tags$li("Copy and paste the hash generated into the \"Hash\" textbox"),
-       tags$li("Press submit"),
-       tags$li("Download the .rds file (a window will pop up asking you where to place the downloaded file) and upload to the appropriate Canvas assignment."))
+       tags$li("Press 'Create responses.rds'. Nothing will pop up, but this will create an .rds file of your hashed responses."),
+       tags$li("Download the .rds file. A window will pop up asking you where to place the downloaded file. Upload this file to the appropriate Canvas assignment."))
   )
 )
 ```
@@ -894,10 +847,9 @@ learnrhash::encoder_ui(
 fluidPage(
     mainPanel(
           div(id = "form",
-            textInput("name", "Name", ""),
             textInput("hash", "Hash", ""),
-            actionButton("submit", "Submit", class = "btn-primary"),
-            downloadButton("downloadData", "Download")
+            actionButton("submit", "Create responses.rds", class = "btn-primary"),
+            downloadButton("downloadData", "Download responses.rds")
           )
         )
     )
@@ -908,12 +860,8 @@ fluidPage(
 learnrhash::encoder_logic()
 
  observeEvent(input$submit,{
-        
-        name_id <<- input$name
         hash_id <<- input$hash
-        
-        responses <<- data.frame("Name" = name_id, "Hash" = hash_id)
-        
+        responses <<- data.frame("Hash" = hash_id)
  })
 output$downloadData <- downloadHandler(
       filename = "responses.rds",
