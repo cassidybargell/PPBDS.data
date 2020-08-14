@@ -707,9 +707,11 @@ question_text("What is the causal effect of Emma being treated on Yao?",
 ## Submit
 
 ```{r context="setup"}
-submission_ui
+# submission_ui()
 ```
 
 ```{r context="server"}
-submission_server()
+# submission_server()
 ```
+
+
