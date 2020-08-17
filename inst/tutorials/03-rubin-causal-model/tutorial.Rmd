@@ -36,8 +36,6 @@ question_text(
 
 ## Preceptor Tables
 
-Answer some questions about Preceptor Tables.
-
 ```{r question-preceptor-tables}
 quiz(
 question_text(
@@ -47,29 +45,77 @@ question_text(
     incorrect = "Ok"
   )
 )
+
+# CB: Maybe move this section to later in the chapter once all components of a Preceptor Table are introduced. 
 ```
 
+## Causal effect
 
-## Causal Effect
+<!-- Potential Outcomes, Estimands  -->
+Retrys are not allowed on multiple choice questions, so read and answer carefully!
 
-```{r question-1-1-quiz}
-
+```{r question-causal-effect}
 quiz(
-
 question("What is the Fundamental Problem of Causal Inference?",
     answer("It is impossible to observe multiple potential outcomes at once.", correct = TRUE, message = "Nice!"),
-    answer("We don't know the potential outcomes for people not surveyed.", message = "Close, missing data is at the heart of inference, but this is not the Fundamental Problem of *Causal* Inference."), 
+    answer("We don't know the potential outcomes for people not surveyed.", message = "Go read the section on Causal Effects"), 
     allow_retry = FALSE
   ),
-
 question_text(
-    "In your own words, what is a 'counterfactual'?",
+    "Explain a 'counterfactual' in a brief phrase. 'Potential outcome' might be helpful to use in your answer.",
     allow_retry = F,
     answer(NULL, correct = T),
     incorrect = "Ok"
+  ),
+question_text(
+  "In one sentence, explain what causal effect is according to the RCM?",
+  allow_retry = F,
+  answer(NULL, correct = T),
+  incorrect = "Ok"
+  ),
+question("Choose the response variable.",
+         answer("$t$"),
+         answer("$u$"),
+         answer("$Y$", correct = T),
+         answer("$c$"), 
+         random_answer_order = T
+         ),
+question_text(
+  "Why do we need more than one response variable if we are trying to understand a causal effect? How are the two response variables different? (Two short sentences/phrases)",
+  allow_retry = F,
+  answer(NULL, correct = T),
+  incorrect = "Ok",
+  trim = F
   )
 )
 ```
+
+## Potential outcomes
+
+```{r question-potential-outcomes}
+quiz(
+question_text("In two sentences, what makes a Preceptor Table ideal, and why is this generally impossible to observe? (You should use the phrase 'potential outcomes' in yuour answer)",
+    allow_retry = F,
+    answer(NULL, correct = T),
+    trim = F,
+    incorrect = "Ok"
+  ),
+question(
+  "If we did not have an ideal Preceptor Table, could we directly calculate the causal effect for an individual like Yao?",
+  answer("No", correct = T),
+  answer("Yes"),
+  allow_retry = F
+)
+)
+```
+
+
+
+
+## Simple models
+
+## Causal Effect
+
 
 Answer the following questions about this Ideal Preceptor Table.
 
@@ -707,11 +753,11 @@ question_text("What is the causal effect of Emma being treated on Yao?",
 ## Submit
 
 ```{r context="setup"}
-submission_ui()
+# submission_ui()
 ```
 
 ```{r context="server"}
-submission_server()
+# submission_server()
 ```
 
 
