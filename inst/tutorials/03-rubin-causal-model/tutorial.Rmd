@@ -371,6 +371,12 @@ question_text("What is your estimate for $Y_t(u)$ for Cassidy? (answer as XX.XX)
 )
 ```
 
+## Two values for tau
+
+## Average treatment effect
+
+## Heterogenous treatment effects
+
 ## Causal Effect
 
 The console has provided for your convenience to solve for the ATE of this sample. Nothing you type in the console will be graded.
